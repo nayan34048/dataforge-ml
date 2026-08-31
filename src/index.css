@@ -1,0 +1,104 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-paper: #faf9f5;
+  --color-paper-dim: #f2f0e8;
+  --color-ink: #1b2b27;
+  --color-ink-soft: #4a5a55;
+  --color-border: #e4e1d6;
+
+  --color-forest: #10201d;
+  --color-forest-dim: #172723;
+  --color-mist: #eaf3ef;
+  --color-mist-soft: #a9bfb9;
+  --color-border-dark: #24413b;
+
+  --color-teal: #1f6f5c;
+  --color-teal-strong: #175545;
+  --color-teal-soft: #cfe6df;
+  --color-amber: #e3a23c;
+  --color-amber-strong: #c9862a;
+  --color-amber-soft: #f7e3c2;
+  --color-clay: #c1543c;
+  --color-clay-soft: #f3d9d2;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html.dark * {
+  border-color: var(--color-border-dark);
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+html.dark body {
+  background-color: var(--color-forest);
+  color: var(--color-mist);
+}
+
+::selection {
+  background-color: var(--color-amber-soft);
+  color: var(--color-ink);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Notebook rail connector line for step navigation */
+.rail-line {
+  background: linear-gradient(to bottom, var(--color-border), var(--color-border));
+}
+html.dark .rail-line {
+  background: linear-gradient(to bottom, var(--color-border-dark), var(--color-border-dark));
+}
+
+/* subtle focus ring, accessible */
+:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 6px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-border-dark);
+}
