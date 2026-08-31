@@ -80,7 +80,7 @@ export function PredictionsTable({ result }: { result: TrainedModelResult }) {
       out[`actual_${result.targetColumn ?? 'target'}`] = r.actual ?? null
       out[`predicted_${result.targetColumn ?? 'target'}`] = r.predicted ?? null
       if (isRegression) out.error = r.error
-      else out.correct = r.correct
+      else out.correct = r.correct === null ? null : r.correct ? 'yes' : 'no'
       return out
     })
     downloadTextFile(`${result.targetColumn ?? 'predictions'}_actual_vs_predicted.csv`, rowsToCsv(exportRows))
